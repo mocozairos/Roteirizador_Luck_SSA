@@ -2714,21 +2714,17 @@ def atualizar_banco_dados(df_exportacao, base_luck):
     conexao.close()
     return df_exportacao
 
-def getUser(userId, base_luck):
+def getUser(userId):
 
     config = {
     'user': 'user_automation',
     'password': 'auto_luck_2024',
     'host': 'comeia.cixat7j68g0n.us-east-1.rds.amazonaws.com',
-    'database': base_luck
+    'database': 'test_phoenix_general'
     }
-
-    # Cria uma cópia do config e sobrescreve o campo database
-    config_general = config.copy()
-    config_general['database'] = 'test_phoenix_general'
     
     # Conexão às Views usando o config modificado
-    conexao = mysql.connector.connect(**config_general)
+    conexao = mysql.connector.connect(**config)
     cursor = conexao.cursor()
 
     request_name = f'SELECT * FROM user WHERE ID = {userId}'
@@ -3662,7 +3658,7 @@ if not st.query_params or not st.query_params["userId"]:
 
 if not 'df_user' in st.session_state:
     
-    st.session_state.df_user = getUser(st.query_params["userId"], 'test_phoenix_joao_pessoa')
+    st.session_state.df_user = getUser(st.query_params["userId"])
 
 if not 'df_router' in st.session_state:
 
