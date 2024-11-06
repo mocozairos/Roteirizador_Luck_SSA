@@ -2117,8 +2117,6 @@ def verificar_rotas_alternativas_ou_plotar_roteiros_sem_apoio(df_roteiros_altern
         df_pdf_2 = df_pdf[['Reserva', 'Data Horario Apresentacao']].sort_values(by='Reserva').reset_index(drop=True)
 
         st.session_state.df_insercao = df_pdf[['Id_Reserva', 'Id_Servico', 'Data Horario Apresentacao', 'Data Horario Apresentacao Original']].reset_index(drop=True)
-
-        st.session_state.df_insercao = df_pdf[['Id_Servico', 'Data Horario Apresentacao']].reset_index(drop=True)
         
         for index in range(len(df_pdf)):
 
@@ -3652,6 +3650,20 @@ st.header('Parâmetros')
 
 row1 = st.columns(3)
 
+# Verificando se o link está com ID do usuário
+
+if not st.query_params or not st.query_params["userId"]:
+
+    st.error("Usuário não autenticado")
+
+    st.stop()
+
+# Carrega os dados da tabela 'user`
+
+if not 'df_user' in st.session_state:
+    
+    st.session_state.df_user = getUser(st.query_params["userId"], 'test_phoenix_joao_pessoa')
+
 if not 'df_router' in st.session_state:
 
     puxar_dados_phoenix()
@@ -4431,7 +4443,7 @@ if 'nome_html' in st.session_state and len(st.session_state.df_roteiros_alternat
 
                 df_pdf_2 = df_pdf[['Reserva', 'Data Horario Apresentacao']].sort_values(by='Reserva').reset_index(drop=True)
 
-                st.session_state.df_insercao = df_pdf[['Id_Servico', 'Data Horario Apresentacao']].reset_index(drop=True)
+                st.session_state.df_insercao = df_pdf[['Id_Reserva', 'Id_Servico', 'Data Horario Apresentacao', 'Data Horario Apresentacao Original']].reset_index(drop=True)
                 
                 for index in range(len(df_pdf)):
 
