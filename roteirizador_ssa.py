@@ -2901,9 +2901,9 @@ def gerar_roteiros_apoio(df_servicos):
 
                             intervalo_ref = definir_intervalo_ref(df_ref_capacidade, index)
                             
-                        if paxs_hotel>=pax_cinco_min:
+                        if paxs_hotel>=st.session_state.pax_cinco_min:
 
-                            intervalo_ref+=intervalo_hoteis_bairros_iguais
+                            intervalo_ref+=timedelta(hours=0, minutes=5, seconds=0)
 
                         data_horario_hotel = df_ref_capacidade.at[index-1, 'Data Horario Apresentacao']-intervalo_ref
 
@@ -3007,9 +3007,9 @@ def gerar_roteiros_apoio(df_servicos):
 
                             intervalo_ref = definir_intervalo_ref(df_ref_capacidade, index)
                             
-                        if paxs_hotel>=pax_cinco_min:
+                        if paxs_hotel>=st.session_state.pax_cinco_min:
 
-                            intervalo_ref+=intervalo_hoteis_bairros_iguais
+                            intervalo_ref+=timedelta(hours=0, minutes=5, seconds=0)
 
                         data_horario_hotel = df_ref_capacidade.at[index-1, 'Data Horario Apresentacao']-intervalo_ref
 
@@ -3117,9 +3117,9 @@ def gerar_roteiros_apoio(df_servicos):
 
                             intervalo_ref = definir_intervalo_ref(df_ref_capacidade, index)
                             
-                        if paxs_hotel>=pax_cinco_min:
+                        if paxs_hotel>=st.session_state.pax_cinco_min:
 
-                            intervalo_ref+=intervalo_hoteis_bairros_iguais
+                            intervalo_ref+=timedelta(hours=0, minutes=5, seconds=0)
 
                         data_horario_hotel = df_ref_capacidade.at[index-1, 'Data Horario Apresentacao']-intervalo_ref
 
@@ -3429,9 +3429,9 @@ def gerar_horarios_apresentacao_4(df_ref, n_carro, pax_max):
 
                     intervalo_ref = definir_intervalo_ref(df_ref, index)
                     
-                if paxs_hotel>=pax_cinco_min:
+                if paxs_hotel>=st.session_state.pax_cinco_min:
 
-                    intervalo_ref+=intervalo_hoteis_bairros_iguais
+                    intervalo_ref+=timedelta(hours=0, minutes=5, seconds=0)
 
                 data_horario_hotel = df_ref.at[index-1, 'Data Horario Apresentacao']-intervalo_ref
 
