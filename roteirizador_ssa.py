@@ -2035,7 +2035,7 @@ def inserir_html_2(nome_html, df):
         
         file.write(html)
         
-def inserir_roteiros_html(nome_html, df_pdf):
+def inserir_roteiros_html_sem_apoio(nome_html, df_pdf):
 
     roteiro = 0
 
@@ -2134,7 +2134,7 @@ def verificar_rotas_alternativas_ou_plotar_roteiros_sem_apoio(df_roteiros_altern
 
         df_pdf = df_pdf.sort_values(by=['Horario Voo / Menor Horário', 'Junção']).reset_index(drop=True)
 
-        inserir_roteiros_html(nome_html, df_pdf)
+        inserir_roteiros_html_sem_apoio(nome_html, df_pdf)
 
         inserir_html_2(nome_html, df_pdf_2)
 
@@ -4457,7 +4457,7 @@ if 'nome_html' in st.session_state and len(st.session_state.df_roteiros_alternat
 
                 df_pdf = df_pdf.sort_values(by=['Horario Voo / Menor Horário', 'Junção']).reset_index(drop=True)
 
-                inserir_roteiros_html(st.session_state.nome_html, df_pdf)
+                inserir_roteiros_html_sem_apoio(st.session_state.nome_html, df_pdf)
 
                 inserir_html_2(st.session_state.nome_html, df_pdf_2)
 
