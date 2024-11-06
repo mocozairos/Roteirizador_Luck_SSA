@@ -3640,8 +3640,6 @@ st.set_page_config(layout='wide')
 
 st.title('Roteirizador de Transfer Out - Salvador')
 
-st.title('Roteirizador de Transfer Out - Salvador')
-
 st.divider()
 
 st.header('Parâmetros')
