@@ -3855,7 +3855,7 @@ if servico_roteiro and 'df_horario_esp_ultimo_hotel' in st.session_state:
 
 if roteirizar:
 
-    # puxar_sequencias_hoteis('1O3HQ-q8sUyDfrSaWemazyN-2eNMZq6UIn0Id-XCd7Ds', ['Hoteis Litoral Norte', 'Hoteis Salvador', 'Hoteis Baixio'], ['df_litoral_norte', 'df_salvador', 'df_baixio'])
+    puxar_sequencias_hoteis('1O3HQ-q8sUyDfrSaWemazyN-2eNMZq6UIn0Id-XCd7Ds', ['Hoteis Litoral Norte', 'Hoteis Salvador', 'Hoteis Baixio'], ['df_litoral_norte', 'df_salvador', 'df_baixio'])
 
     puxar_intervalos_gsheet('1O3HQ-q8sUyDfrSaWemazyN-2eNMZq6UIn0Id-XCd7Ds', ['Intervalos'], ['df_intervalos'])
 
