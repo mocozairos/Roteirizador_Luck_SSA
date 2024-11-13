@@ -2726,6 +2726,8 @@ def atualizar_banco_dados(df_exportacao, base_luck):
     conexao.close()
 
     st.session_state.df_insercao = st.session_state.df_insercao.drop(st.session_state.df_insercao.index)
+
+    st.experimental_rerun()
     
     return df_exportacao
 
