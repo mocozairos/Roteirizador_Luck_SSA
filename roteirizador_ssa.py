@@ -2724,11 +2724,6 @@ def atualizar_banco_dados(df_exportacao, base_luck):
     
     cursor.close()
     conexao.close()
-
-    st.session_state.df_insercao = st.session_state.df_insercao.drop(st.session_state.df_insercao.index)
-
-    st.experimental_rerun()
-    
     return df_exportacao
 
 def getUser(userId):
@@ -4383,3 +4378,5 @@ if 'df_insercao' in st.session_state and len(st.session_state.df_insercao)>0:
     if lancar_horarios and len(st.session_state.df_insercao)>0:
 
         df_insercao = atualizar_banco_dados(st.session_state.df_insercao, 'test_phoenix_salvador')
+
+        st.session_state.df_insercao = st.session_state.df_insercao.drop(st.session_state.df_insercao.index)
