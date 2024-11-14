@@ -3326,6 +3326,8 @@ def gerar_horarios_apresentacao_4(df_ref, n_carro, pax_max):
 
 def dividir_rotas_carros_utilitarios(df_router_filtrado_2):
 
+    df_router_filtrado_2['Total ADT | CHD'] = df_router_filtrado_2['Total ADT | CHD'] + df_router_filtrado_2['Total INF']
+
     df_router_filtrado_2['Carros Utilitarios'] = 0
 
     df_router_filtrado_2['max_carro'] = df_router_filtrado_2.groupby('Roteiro')['Carros'].transform('max')
@@ -3463,7 +3465,6 @@ def dividir_rotas_carros_utilitarios(df_router_filtrado_2):
             elif carro_utilitario==0 and carro_principal==df_ref_2.at[index-1, 'Carros']:
 
                 df_router_filtrado_2.at[index_principal, 'Carros']=carro_n
-
 
     return df_router_filtrado_2
 
@@ -3852,7 +3853,7 @@ if servico_roteiro and 'df_horario_esp_ultimo_hotel' in st.session_state:
 
 if roteirizar:
 
-    puxar_sequencias_hoteis('1O3HQ-q8sUyDfrSaWemazyN-2eNMZq6UIn0Id-XCd7Ds', ['Hoteis Litoral Norte', 'Hoteis Salvador', 'Hoteis Baixio'], ['df_litoral_norte', 'df_salvador', 'df_baixio'])
+    # puxar_sequencias_hoteis('1O3HQ-q8sUyDfrSaWemazyN-2eNMZq6UIn0Id-XCd7Ds', ['Hoteis Litoral Norte', 'Hoteis Salvador', 'Hoteis Baixio'], ['df_litoral_norte', 'df_salvador', 'df_baixio'])
 
     puxar_intervalos_gsheet('1O3HQ-q8sUyDfrSaWemazyN-2eNMZq6UIn0Id-XCd7Ds', ['Intervalos'], ['df_intervalos'])
 
