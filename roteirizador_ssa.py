@@ -3422,6 +3422,10 @@ def dividir_rotas_carros_utilitarios(df_router_filtrado_2):
 
             df_router_filtrado_2.loc[df_router_filtrado_2['Roteiro']==item, 'Carros Utilitarios']=0
 
+            df_router_filtrado_2.loc[df_router_filtrado_2['Roteiro']==item, 'Total ADT | CHD'] = \
+                df_router_filtrado_2.loc[df_router_filtrado_2['Roteiro']==item, 'Total ADT | CHD'] - \
+                    df_router_filtrado_2.loc[df_router_filtrado_2['Roteiro']==item, 'Total INF']
+
     lista_roteiros_ajuste = df_router_filtrado_2[(df_router_filtrado_2['Carros Utilitarios']!=0)]['Roteiro'].unique().tolist()
 
     for roteiro_ref in lista_roteiros_ajuste:
