@@ -4518,7 +4518,8 @@ if roteirizar:
 
     verificar_rotas_alternativas_ou_plotar_roteiros_sem_apoio(df_roteiros_alternativos, row_warning, row3, coluna, df_hoteis_pax_max, df_router_filtrado_2, st.session_state.df_juncao_voos, st.session_state.nome_html)
 
-if 'nome_html' in st.session_state and len(st.session_state.df_roteiros_alternativos)>0:
+if 'nome_html' in st.session_state and (len(st.session_state.df_roteiros_alternativos)>0 or len(st.session_state.df_roteiros_alternativos_2)>0 or len(st.session_state.df_roteiros_alternativos_3)>0 or \
+        len(st.session_state.df_roteiros_alternativos_4)>0):
 
     st.divider()
 
