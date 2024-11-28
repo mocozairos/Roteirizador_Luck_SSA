@@ -7,6 +7,7 @@ from collections import Counter
 from google.oauth2 import service_account
 import gspread
 from itertools import combinations
+import requests
 
 def gerar_df_phoenix(vw_name, base_luck):
     
@@ -4701,3 +4702,43 @@ if 'df_insercao' in st.session_state and len(st.session_state.df_insercao)>0:
         df_insercao = atualizar_banco_dados(st.session_state.df_insercao, 'test_phoenix_salvador')
 
         st.rerun()
+
+if servico_roteiro and data_roteiro:
+
+    df_ref_thiago = st.session_state.df_router[(st.session_state.df_router['Data Execucao']==data_roteiro) & (st.session_state.df_router['Tipo de Servico']=='OUT') & 
+                                                    (st.session_state.df_router['Status do Servico']!='CANCELADO') & (st.session_state.df_router['Servico']==servico_roteiro)]\
+    .reset_index(drop=True)
+        
+    df_ref_thiago = df_ref_thiago[~df_ref_thiago['Observacao'].str.upper().str.contains('CLD', na=False)]
+
+    dict_tag_servico = \
+        {' OUT -  LITORAL NORTE ': 'Litoral Norte', 
+         'OUT - SALVADOR ': 'Salvador', 
+         'OUT - BAIXIO ': 'Baixio'}
+
+    if len(df_ref_thiago)>0:
+
+        lista_ids_servicos = df_ref_thiago['Id_Servico'].tolist()
+
+        webhook_thiago = "https://conexao.multiatend.com.br/webhook/luckenvioinformativosalvador"
+        
+        enviar_informes = st.button(f'Enviar Informativos de Saída - {servico_roteiro} | {data_roteiro.strftime("%d/%m/%Y")}')
+        
+        data_roteiro_str = data_roteiro.strftime('%Y-%m-%d')
+        
+        payload = {"data": data_roteiro_str, 
+                   "ids_servicos": lista_ids_servicos, 
+                   "tag_servico": dict_tag_servico[servico_roteiro]}
+        
+        if enviar_informes:
+            response = requests.post(webhook_thiago, json=payload)
+            
+            if response.status_code == 200:
+                
+                    st.success(f"Informativos Enviados com Sucesso!")
+                
+            else:
+                
+                st.error(f"Erro. Favor contactar o suporte")
+
+                st.error(f"{response}")
