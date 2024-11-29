@@ -3688,6 +3688,10 @@ def gerar_roteiros_alternativos_4(df_servicos, pax_max_utilitario, pax_max_van, 
 
                     target = pax_max_van
 
+                else:
+
+                    target = pax_max_utilitario
+
             else:
 
                 paxs_total_roteiro = df_ref_group_hotel['Total ADT | CHD'].sum()
@@ -3703,6 +3707,10 @@ def gerar_roteiros_alternativos_4(df_servicos, pax_max_utilitario, pax_max_van, 
                 elif paxs_total_roteiro > pax_max_utilitario:
 
                     target = pax_max_van
+
+                else:
+
+                    target = pax_max_utilitario
 
             n_carro_ref+=1
 
